@@ -1,7 +1,13 @@
 import pygame
 
+from dataflow import Dataflow
 
-def draw(surface):
-    pygame.draw.circle(surface, (0, 255, 255), (400, 300), 50)
-    pygame.draw.circle(surface, (255, 0, 0), (100, 75), 50)
-    pygame.draw.circle(surface, (255, 0, 0), (25, 100), 25)
+
+class Animation(Dataflow):
+    def setup(self):
+        pass
+
+    def play(self, surface):
+        pygame.draw.circle(surface, (0, 255, 255), (400, 300), 50)
+        pygame.draw.circle(surface, (255, 0, 0), (100, 375), 50)
+        pygame.draw.circle(surface, (0, 255, 0), (525, 100), 25)

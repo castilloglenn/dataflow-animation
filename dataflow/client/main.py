@@ -35,19 +35,19 @@ class ScriptHandler(FileSystemEventHandler):
             if hasattr(module, "Test"):
                 logging.info("File change detected. Running Test...")
                 module.Test()
-            elif hasattr(module, "draw"):
-                logging.info("File change detected. Running draw...")
-                self.renderer.set_draw_func(module.draw)
+            elif hasattr(module, "Animation"):
+                logging.info("File change detected. Applying animation...")
+                self.renderer.set_animation(module.Animation)
             else:
                 logging.error(
-                    "No Test class or draw method found in the script.",
+                    "No Test or Animation class found in the script.",
                 )
-                self.renderer.set_draw_func(None)
+                self.renderer.set_animation(None)
 
         # pylint: disable=W0718
         except Exception as e:
             logging.error("Error loading script:\n%s: %s", type(e).__name__, e)
-            self.renderer.set_draw_func(None)
+            self.renderer.set_animation(None)
 
 
 def observe(path, renderer):

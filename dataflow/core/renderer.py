@@ -1,4 +1,8 @@
+from typing import Optional
+
 import pygame
+
+from dataflow import Dataflow
 
 
 class PygameRenderer:
@@ -8,7 +12,7 @@ class PygameRenderer:
         self.screen = None
         self.clock = None
         self.running = True
-        self.draw_func = None
+        self.animation: Optional[Dataflow] = None
 
     def init(self):
         pygame.init()
@@ -17,8 +21,8 @@ class PygameRenderer:
         self.clock = pygame.time.Clock()
         self.run()
 
-    def set_draw_func(self, draw_func):
-        self.draw_func = draw_func
+    def set_animation(self, animation):
+        self.animation = animation
 
     def run(self):
         try:
@@ -28,11 +32,13 @@ class PygameRenderer:
                         self.running = False
 
                 self.screen.fill((0, 0, 0))
-                if self.draw_func:
-                    self.draw_func(self.screen)
+                if self.animation:
+                    self.animation.play(self.animation, self.screen)
 
                 pygame.display.flip()
                 self.clock.tick(60)
+        except KeyboardInterrupt:
+            pass
         finally:
             pygame.quit()
 
