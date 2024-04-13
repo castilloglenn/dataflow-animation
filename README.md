@@ -12,9 +12,13 @@ Then go to the directory
 
 ```cd dataflow```
 
-Then type the following in the terminal to install it as local library.
+Then create a virtual environment
 
-```pip install -e .```
+```python3 -m venv venv```
+
+Activate your environment, then type the following to automatically setup the environment .
+
+```make setup```
 
 To view example usage, type the following
 
