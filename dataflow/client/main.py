@@ -51,15 +51,14 @@ class ScriptHandler(FileSystemEventHandler):
 
 
 def observe(path, renderer):
-    print("observe")
     directory, filename = os.path.split(path)
     event_handler = ScriptHandler(directory, filename, renderer)
     observer = Observer()
     observer.schedule(event_handler, path=directory, recursive=False)
-    observer.start()
-
     logging.info("File: %s", filename)
     logging.info("Watching for changes. Press Ctrl+C to stop.")
+    observer.start()
+
     try:
         while True:
             time.sleep(1)
