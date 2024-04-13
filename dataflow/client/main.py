@@ -40,12 +40,6 @@ class ScriptHandler(FileSystemEventHandler):
 
 
 def main(path):
-    logging.basicConfig(
-        level=logging.INFO,
-        format="[%(asctime)s] %(message)s",
-        datefmt="%Y/%m/%d %H:%M:%S",
-    )
-
     directory, filename = os.path.split(path)
     event_handler = ScriptHandler(directory, filename)
     observer = Observer()
@@ -58,7 +52,7 @@ def main(path):
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-        pass
+        logging.info("Stopping watcher...")
     finally:
         observer.stop()
         observer.join()
@@ -66,8 +60,24 @@ def main(path):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        logging.error("Usage: dataflow <full_path_to_file.py>")
+    logging.basicConfig(
+        level=logging.INFO,
+        format="[%(asctime)s] %(message)s",
+        datefmt="%Y/%m/%d %H:%M:%S",
+    )
+
+    if len(sys.argv) != 2:
+        logging.error(
+            "Invalid number of arguments. "
+            + "Usage: python "
+            + "<full_path_to_main.py> "
+            + "<full_path_to_file_to_watch.py>",
+        )
         sys.exit(1)
 
-    main(sys.argv[1])
+    path_arg = sys.argv[1]
+    if not os.path.exists(path_arg):
+        logging.error("File does not exist: %s", path_arg)
+        sys.exit(1)
+
+    main(path_arg)
