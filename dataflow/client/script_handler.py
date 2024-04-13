@@ -4,6 +4,8 @@ import importlib.util
 
 from watchdog.events import FileSystemEventHandler
 
+from dataflow import Dataflow
+
 
 class ScriptHandler(FileSystemEventHandler):
     def __init__(self, directory, filename, renderer):
@@ -30,11 +32,17 @@ class ScriptHandler(FileSystemEventHandler):
                 logging.info("File change detected. Running Test...")
                 module.Test()
             elif hasattr(module, "Animation"):
+                if not issubclass(module.Animation, Dataflow):
+                    logging.error(
+                        "Animation class must inherit from Dataflow.",
+                    )
+                    self.renderer.set_animation(None)
+                    return
                 logging.info("File change detected. Applying animation...")
                 self.renderer.set_animation(module.Animation)
             else:
                 logging.error(
-                    "No Test or Animation class found in the script.",
+                    "No Animation class found in the script.",
                 )
                 self.renderer.set_animation(None)
 
