@@ -1,3 +1,10 @@
+"""
+This example demonstrates how to create a simple animation using the Dataflow
+abstract class. It directly uses pygame to draw the animation to show how the
+library functions, where in other examples they will utilize dataflow
+animations to make it easier to use.
+"""
+
 import pygame
 
 from dataflow import Dataflow
