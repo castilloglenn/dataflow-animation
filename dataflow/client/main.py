@@ -91,7 +91,7 @@ def main():
         format="[%(asctime)s] %(message)s",
         datefmt="%Y/%m/%d %H:%M:%S",
     )
-    print(sys.argv)
+
     if len(sys.argv) != 2:
         logging.error(
             "Invalid number of arguments. "
