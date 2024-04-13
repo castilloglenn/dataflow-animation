@@ -52,6 +52,7 @@ def main(path):
     observer.schedule(event_handler, path=directory, recursive=False)
     observer.start()
 
+    logging.info("File: %s", filename)
     logging.info("Watching for changes. Press Ctrl+C to stop.")
     try:
         while True:
