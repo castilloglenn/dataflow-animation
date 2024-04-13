@@ -1,29 +1,61 @@
-# dataflow
-Python library that draws data flow animations.
+# Dataflow
+**Dataflow** is a Python library designed for creating and visualizing data flow animations easily. It enables users to develop mockups of data flow designs that can be exported as video files or images, which can be included in pull requests or presentations.
 
-The goal of this library is to provide easy to use animation library using a basic language (Python) to easily create mockups of data flow designs that can be exported as a video file (or image too) to be presented or attached in their pull requests.
+## Status
+Currently in development. Not all features are complete, and significant changes might still be made.
 
-### Currently in development stage
-To install locally and test, clone the repository
+## Installation
 
-```git clone https://github.com/castilloglenn/dataflow```
+### Prerequisites
+- Python 3.6 or higher
+- pip
+- git
 
-Then go to the directory
+### Setup Instructions
 
-```cd dataflow```
+1. **Clone the repository**
+   
+   Clone the `dataflow` repository to your local machine by running the following command:
+```
+git clone https://github.com/castilloglenn/dataflow
+```
 
-Then create a virtual environment
+2. **Navigate to the directory**
+Change to the cloned directory:
+```
+cd dataflow
+```
 
-```python3 -m venv venv```
+3. **Create a virtual environment**
+Set up a virtual environment to manage dependencies:
+```
+python3 -m venv venv
+```
 
-Activate your environment, then type the following to automatically setup the environment .
+4. **Activate the virtual environment**
+Activate the created virtual environment:
+- On Windows:
+  ```
+  .\venv\Scripts\activate
+  ```
+- On macOS and Linux:
+  ```
+  source venv/bin/activate
+  ```
 
-```make setup```
+5. **Install dependencies**
+Install the necessary dependencies using the `setup` command provided in the Makefile:
+```
+make setup
+```
 
-To view example usage, type the following
+## Running Examples
 
-```make run_example```
+To run an example and see the library in action, use the following command:
+```
+make run_example
+```
 
-A PyGame window will appear, then go to the file `examples/simple.py` and Save it `(Command + S)`.
+This will open a PyGame window displaying the animation specified in `examples/simple.py`. You can modify this file and save it to see changes in real-time due to the live reloading feature provided by the library.
 
-The circles shall be shown in realtime in the PyGame window. This interactive development feature makes creating animations easy so devs can visualize what they are coding in real-time.
+
