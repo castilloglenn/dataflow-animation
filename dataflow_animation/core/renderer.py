@@ -63,7 +63,7 @@ class PygameRenderer:
                 self.running = False
 
     def render(self):
-        self.screen.fill((0, 0, 0))
+        self.screen.fill(CONFIG.background_color)
         self.play_animation()
 
         pygame.display.update()

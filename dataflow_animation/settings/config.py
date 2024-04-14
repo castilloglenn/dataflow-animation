@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Tuple
 
 from pydantic import BaseModel
 
@@ -15,6 +15,7 @@ class Config(BaseModel):
     height: int = 800
 
     # Rendering
+    background_color: Tuple[int, int, int] = (0, 0, 0)
     fps: int = 60
 
     class Config:
