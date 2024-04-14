@@ -10,6 +10,8 @@ see changes reflected instantaneously on the screen, making it an ideal tool
 for rapid prototyping of data flow diagrams and animations.
 """
 
+__version__ = "0.1.0"
+
 from abc import ABC, abstractmethod
 
 from dataflow_animation.core.engine import AnimationManager

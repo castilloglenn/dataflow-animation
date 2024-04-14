@@ -1,12 +1,32 @@
+import re
+
 from setuptools import setup, find_packages
 
+
 DESCRIPTION = ""
-with open("README.md", "r", encoding="utf-8") as f:
-    DESCRIPTION = f.read()
+with open("README.md", "r", encoding="utf-8") as readme_file:
+    DESCRIPTION = readme_file.read()
+
+
+def find_version():
+    with open(
+        "dataflow_animation/__init__.py",
+        "r",
+        encoding="utf-8",
+    ) as init_file:
+        version_match = re.search(
+            r"^__version__ = ['\"]([^'\"]*)['\"]",
+            init_file.read(),
+            re.M,
+        )
+        if version_match:
+            return version_match.group(1)
+        raise RuntimeError("Unable to find version string.")
+
 
 setup(
     name="dataflow-animation",
-    version="0.1.0",
+    version=find_version(),
     description="Python library that draws data flow animations.",
     long_description=DESCRIPTION,
     long_description_content_type="text/markdown",
