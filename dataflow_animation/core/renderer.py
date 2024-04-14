@@ -16,27 +16,16 @@ class PygameRenderer:
         self.clock: pygame.time.Clock = None
         self.running = True
 
+    @property
+    def is_ready(self):
+        if not self.animation:
+            return False
+        return self.animation.is_ready
+
     def set_animation(self, animation):
         self.animation = animation
-
-    def play_animation(self):
-        if self.animation is None:
-            return
-
-        try:
-            self.animation.play(self.screen)
-
-        except pygame.error as e:
-            logging.error("Pygame error: %s", e)
-
-        # pylint: disable=W0718
-        except Exception as e:
-            logging.error(
-                "Error playing animation:\n%s: %s",
-                type(e).__name__,
-                e,
-            )
-            self.set_animation(None)
+        if self.animation:
+            self.build_animation_sequence()
 
     def init(self):
         os.environ["SDL_VIDEO_WINDOW_POS"] = CONFIG.sdl_video_window_pos
@@ -51,21 +40,6 @@ class PygameRenderer:
             pygame.quit()
             logging.info("Pygame stopped.")
 
-    def stop(self):
-        self.running = False
-
-    def parse_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.running = False
-
-    def render(self):
-        self.screen.fill(CONFIG.background_color)
-        self.play_animation()
-
-        pygame.display.update()
-        self.clock.tick(CONFIG.fps)
-
     def run(self):
         try:
             while self.running:
@@ -77,3 +51,37 @@ class PygameRenderer:
 
         except KeyboardInterrupt:
             logging.info("Pygame exiting...")
+
+    def parse_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+
+    def render(self):
+        self.screen.fill(CONFIG.background_color)
+
+        pygame.display.update()
+        self.clock.tick(CONFIG.fps)
+
+    def build_animation_sequence(self):
+        if self.animation is None:
+            return
+
+        try:
+            self.animation.set_surface(self.screen)
+            self.animation.setup()
+
+        except pygame.error as e:
+            logging.error("Pygame error: %s", e)
+
+        # pylint: disable=W0718
+        except Exception as e:
+            logging.error(
+                "Error playing animation:\n%s: %s",
+                type(e).__name__,
+                e,
+            )
+            self.set_animation(None)
+
+    def stop(self):
+        self.running = False

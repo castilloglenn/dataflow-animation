@@ -1,19 +1,19 @@
-from pygame import Surface
-
 from dataflow_animation import Dataflow
+from dataflow_animation.animations import animate
 from dataflow_animation.objects import Entity, Information
+from dataflow_animation.constants import CONFIG
 
 
 class Animation(Dataflow):
-    def __init__(self):
-        super().__init__()
-        Entity(self, name="A", level=1)
-        Entity(self, name="B", level=2)
+    def setup(self):
+        CONFIG.update(width=1000)
+
+        Entity(self, name="Frontend", level=1)
+        Entity(self, name="Backend", level=2)
         Information(
             self,
-            name="Information",
-            starts_at="A",
+            name="Data",
+            starts_at="Frontend",
         )
 
-    def play(self, surface: Surface):
-        pass
+        animate(self, info="Data", to="Backend")

@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import logging
 import threading
 
@@ -12,7 +13,7 @@ from dataflow_animation.client.script_handler import ScriptHandler
 observer = Observer()
 
 
-def observe(path, renderer):
+def observe(path: str, renderer: PygameRenderer):
     directory, filename = os.path.split(path)
     event_handler = ScriptHandler(directory, filename, renderer)
     observer.schedule(event_handler, path=directory, recursive=False)
@@ -34,6 +35,12 @@ def setup(filepath):
     watcher_thread.start()
 
     try:
+        while not renderer.is_ready:
+            time.sleep(0.1)
+
+        logging.info("Animation is ready.")
+        logging.info("Starting Pygame...")
+
         renderer.init()
         renderer.run()
     finally:
