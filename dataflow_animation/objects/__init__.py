@@ -57,14 +57,6 @@ class Entity(BaseObject):
 
         collection.register(self)
 
-    def __str__(self):
-        return f"Entity: {self.name} (Level {self.level})"
-
-    def __eq__(self, other):
-        if not isinstance(other, Entity):
-            return False
-        return self.name == other.text and self.level == other.level
-
 
 class Information(BaseObject):
     def __init__(self, collection, *, name: str, starts_at: str):
@@ -72,11 +64,3 @@ class Information(BaseObject):
         self.starts_at = collection.find_entity(starts_at)
 
         collection.register(self)
-
-    def __str__(self):
-        return f"Information: {self.name} (Starts at {self.starts_at})"
-
-    def __eq__(self, other):
-        if not isinstance(other, Information):
-            return False
-        return self.name == other.text and self.starts_at == other.starts_at
