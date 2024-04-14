@@ -10,3 +10,7 @@ run_watchdog_test:
 run_example:
 	clear
 	dataflow /Users/mb-02/Documents/personal/dataflow-animation/examples/simple.py
+
+test:
+	clear
+	pytest tests
