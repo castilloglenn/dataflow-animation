@@ -34,8 +34,6 @@ class PygameRenderer:
         self.screen = pygame.display.set_mode((CONFIG.width, CONFIG.height))
         self.clock = pygame.time.Clock()
 
-        self.run()
-
     def run(self):
         try:
             while self.running:
