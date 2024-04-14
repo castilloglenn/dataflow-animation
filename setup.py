@@ -17,7 +17,7 @@ setup(
     install_requires=["pygame", "watchdog"],
     entry_points={
         "console_scripts": [
-            "dataflow=dataflow.client.main:main",
+            "dataflow=dataflow_animation.client.main:main",
         ],
     },
     classifiers=[
