@@ -3,6 +3,10 @@ setup:
 	pip install -r requirements.txt
 	pip install -e .
 
+run:
+	clear
+	dataflow /Users/mb-02/Documents/personal/dataflow-animation/examples/basic.py
+
 run_watchdog_test:
 	clear
 	dataflow /Users/mb-02/Documents/personal/dataflow-animation/tests/watchdog/realtime_file_updates.py

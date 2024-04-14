@@ -15,8 +15,13 @@ class Config(BaseModel):
     height: int = 800
 
     # Rendering
-    background_color: Tuple[int, int, int] = (0, 0, 0)
     fps: int = 60
+    font_name: str = "Arial"
+    font_size: int = 20
+
+    # Colors
+    font_color: Tuple[int, int, int] = (255, 255, 255)
+    background_color: Tuple[int, int, int] = (0, 0, 0)
 
     class Config:
         env_file = ".env"

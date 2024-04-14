@@ -39,7 +39,7 @@ class ScriptHandler(FileSystemEventHandler):
                     self.renderer.set_animation(None)
                     return
                 logging.info("File change detected. Applying animation...")
-                self.renderer.set_animation(module.Animation)
+                self.renderer.set_animation(module.Animation())
             else:
                 logging.error(
                     "No Animation class found in the script.",

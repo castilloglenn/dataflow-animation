@@ -27,7 +27,7 @@ class PygameRenderer:
             return
 
         try:
-            self.animation.play(self.animation, self.screen)
+            self.animation.play(self.screen)
 
         except pygame.error as e:
             logging.error("Pygame error: %s", e)
