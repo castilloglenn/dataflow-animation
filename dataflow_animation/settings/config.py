@@ -5,7 +5,6 @@ import logging
 from dataflow_animation.types import Color, ConfigOptions
 
 
-# pylint: disable=R0902
 @dataclass
 class Config:
     # Screen dimensions
