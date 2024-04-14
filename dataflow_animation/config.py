@@ -3,6 +3,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+# pylint: disable=too-few-public-methods
 class Config(BaseModel):
     # Window position
     x: int = 0
