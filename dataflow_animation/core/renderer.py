@@ -5,7 +5,7 @@ import logging
 from pygame import Surface
 import pygame
 
-from dataflow_animation.config import get_config
+from dataflow_animation.settings.config import get_config
 from dataflow_animation import Dataflow
 
 
