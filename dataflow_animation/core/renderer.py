@@ -20,7 +20,7 @@ class PygameRenderer:
     def is_ready(self):
         if not self.animation:
             return False
-        return self.animation.is_ready
+        return self.animation.engine.is_ready
 
     def set_animation(self, animation):
         self.animation = animation
@@ -68,7 +68,7 @@ class PygameRenderer:
             return
 
         try:
-            self.animation.set_surface(self.screen)
+            self.animation.engine.set_surface(self.screen)
             self.animation.setup()
 
         except pygame.error as e:

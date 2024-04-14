@@ -18,13 +18,15 @@ class AnimationStep:
 
 
 def animate(
-    collection,
+    animation,
     *,
     info: Information,
     to: Entity,
     path: Path = Path.LINEAR,
     duration: int = 1000,
 ):
-    information = collection.find_information(info)
-    entity = collection.find_entity(to)
-    collection.register(AnimationStep(information, entity, path, duration))
+    information = animation.engine.find_information(info)
+    entity = animation.engine.find_entity(to)
+    animation.engine.register(
+        AnimationStep(information, entity, path, duration),
+    )

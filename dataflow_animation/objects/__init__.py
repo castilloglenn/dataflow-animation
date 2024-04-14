@@ -9,9 +9,8 @@ from dataflow_animation.types import Dataflow
 
 
 class BaseObject(Sprite):
-    def __init__(self, collection: Dataflow, name: str):
+    def __init__(self, name: str):
         super().__init__()
-        self.collection = collection
         self.name = name
         self.visible = True
 
@@ -50,16 +49,16 @@ class BaseObject(Sprite):
 
 
 class Entity(BaseObject):
-    def __init__(self, collection: Dataflow, *, name: str, level: int):
-        super().__init__(collection, name)
+    def __init__(self, animation: Dataflow, *, name: str, level: int):
+        super().__init__(name)
         self.level = level
 
-        collection.register(self)
+        animation.engine.register(self)
 
 
 class Information(BaseObject):
-    def __init__(self, collection: Dataflow, *, name: str, starts_at: str):
-        super().__init__(collection, name)
-        self.starts_at = collection.find_entity(starts_at)
+    def __init__(self, animation: Dataflow, *, name: str, starts_at: str):
+        super().__init__(name)
+        self.starts_at = animation.engine.find_entity(starts_at)
 
-        collection.register(self)
+        animation.engine.register(self)

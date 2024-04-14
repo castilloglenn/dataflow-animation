@@ -25,6 +25,9 @@ class AnimationManager:
             ]
         )
 
+    def set_surface(self, surface: Surface):
+        self.surface = surface
+
     def find_entity(self, name: str) -> Entity:
         entity = self.entities.get(name)
         if not entity:

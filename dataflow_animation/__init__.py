@@ -12,10 +12,7 @@ for rapid prototyping of data flow diagrams and animations.
 
 from abc import ABC, abstractmethod
 
-from pygame import Surface
-
 from dataflow_animation.core.engine import AnimationManager
-from dataflow_animation.objects import BaseObject, Entity, Information
 
 
 class Dataflow(ABC):
@@ -35,19 +32,3 @@ class Dataflow(ABC):
     @abstractmethod
     def setup(self):
         """Setup the animation script to be played to the window."""
-
-    @property
-    def is_ready(self):
-        return self.engine.is_ready
-
-    def set_surface(self, surface: Surface):
-        self.engine.surface = surface
-
-    def find_entity(self, name: str) -> Entity:
-        return self.engine.find_entity(name)
-
-    def find_information(self, name: str) -> Information:
-        return self.engine.find_information(name)
-
-    def register(self, instance: BaseObject):
-        self.engine.register(instance)
