@@ -34,11 +34,7 @@ class PygameRenderer:
         self.screen = pygame.display.set_mode((CONFIG.width, CONFIG.height))
         self.clock = pygame.time.Clock()
 
-        try:
-            self.run()
-        finally:
-            pygame.quit()
-            logging.info("Pygame stopped.")
+        self.run()
 
     def run(self):
         try:
@@ -46,11 +42,9 @@ class PygameRenderer:
                 self.parse_events()
                 self.render()
 
-        except pygame.error as e:
-            logging.error("Pygame error: %s", e)
-
-        except KeyboardInterrupt:
-            logging.info("Pygame exiting...")
+        finally:
+            pygame.quit()
+            logging.info("Pygame stopped.")
 
     def parse_events(self):
         for event in pygame.event.get():
@@ -77,7 +71,7 @@ class PygameRenderer:
         # pylint: disable=W0718
         except Exception as e:
             logging.error(
-                "Error playing animation:\n%s: %s",
+                "Error building the animations:\n%s: %s",
                 type(e).__name__,
                 e,
             )

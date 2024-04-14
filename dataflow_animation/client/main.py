@@ -43,6 +43,8 @@ def setup(filepath):
 
         renderer.init()
         renderer.run()
+    except KeyboardInterrupt:
+        logging.info("Exiting...")
     finally:
         renderer.stop()
         if watcher_thread.is_alive():
