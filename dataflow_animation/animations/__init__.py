@@ -8,14 +8,3 @@ class AnimationStep:
         self.entity = entity
         self.information = information
         self.path = path
-
-
-def animate(
-    collection,
-    *,
-    info: Information,
-    to: Entity,
-    path: Path = Path.LINEAR,
-    duration: int = 1000,
-):
-    pass
