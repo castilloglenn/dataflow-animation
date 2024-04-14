@@ -1,5 +1,5 @@
-# Dataflow
-**Dataflow** is an innovative Python library designed to simplify the visualization of data flows through **real-time animations**. Utilizing **Pygame** for rendering and **Watchdog** for live updates, Dataflow makes it effortless to develop, visualize, and refine complex data flow animations dynamically. This library is particularly useful for developers and analysts who need to create and present **data-driven animations and diagrams** that are both informative and visually engaging. With Dataflow, users can write Python code to define animations and see changes reflected **instantaneously** on the screen, making it an ideal tool for **rapid prototyping of data flow diagrams and animations**.
+# Dataflow Animation
+**dataflow-animation** is an innovative Python library designed to simplify the visualization of data flows through **real-time animations**. Utilizing **Pygame** for rendering and **Watchdog** for live updates, Dataflow makes it effortless to develop, visualize, and refine complex data flow animations dynamically. This library is particularly useful for developers and analysts who need to create and present **data-driven animations and diagrams** that are both informative and visually engaging. With Dataflow, users can write Python code to define animations and see changes reflected **instantaneously** on the screen, making it an ideal tool for **rapid prototyping of data flow diagrams and animations**.
 
 ## Status
 Currently in development. Not all features are complete, and significant changes might still be made.
@@ -15,15 +15,15 @@ Currently in development. Not all features are complete, and significant changes
 
 1. **Clone the repository**
    
-   Clone the `dataflow` repository to your local machine by running the following command:
+   Clone the `dataflow-animation` repository to your local machine by running the following command:
 ```
-git clone https://github.com/castilloglenn/dataflow
+git clone https://github.com/castilloglenn/dataflow-animation
 ```
 
 2. **Navigate to the directory**
 Change to the cloned directory:
 ```
-cd dataflow
+cd dataflow-animation
 ```
 
 3. **Create a virtual environment**
