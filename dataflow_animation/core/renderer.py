@@ -26,25 +26,35 @@ class PygameRenderer:
 
         try:
             self.run()
-        except pygame.error as e:
-            logging.error("Pygame error: %s", e)
         except KeyboardInterrupt:
             logging.info("Pygame exiting...")
         finally:
             pygame.quit()
+            logging.info("Pygame stopped.")
 
     def stop(self):
         self.running = False
 
-    def run(self):
+    def render(self):
+        self.screen.fill((0, 0, 0))
+        if self.animation:
+            self.animation.play(self.animation, self.screen)
+
+        pygame.display.flip()
+        self.clock.tick(60)
+
+    def parse_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+
+    def loop(self):
         while self.running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
+            self.parse_events()
+            self.render()
 
-            self.screen.fill((0, 0, 0))
-            if self.animation:
-                self.animation.play(self.animation, self.screen)
-
-            pygame.display.flip()
-            self.clock.tick(60)
+    def run(self):
+        try:
+            self.loop()
+        except pygame.error as e:
+            logging.error("Pygame error: %s", e)

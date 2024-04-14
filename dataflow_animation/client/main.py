@@ -1,6 +1,5 @@
 import os
 import sys
-import time
 import logging
 import threading
 
@@ -10,39 +9,40 @@ from dataflow_animation.core.renderer import PygameRenderer
 from dataflow_animation.client.script_handler import ScriptHandler
 
 
+observer = Observer()
+
+
 def observe(path, renderer):
     directory, filename = os.path.split(path)
     event_handler = ScriptHandler(directory, filename, renderer)
-    observer = Observer()
     observer.schedule(event_handler, path=directory, recursive=False)
-    logging.info("File: %s", filename)
-    logging.info("Watching for changes. Press Ctrl+C to stop.")
     observer.start()
 
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        logging.info("Stopping watcher...")
-    finally:
-        renderer.stop()
-        observer.stop()
-        observer.join()
-        logging.info("Stopped watching.")
+    logging.info("File: %s", filename)
+    logging.info("Watching for changes. Press Ctrl+C to stop.")
+
+    observer.join()
 
 
 def setup(filepath):
     renderer = PygameRenderer()
     watcher_thread = threading.Thread(
-        target=observe, args=(filepath, renderer), daemon=True
+        target=observe,
+        args=(filepath, renderer),
+        daemon=True,
     )
     watcher_thread.start()
-    renderer.init()
 
     try:
+        renderer.init()
         renderer.run()
     finally:
         renderer.stop()
+        if watcher_thread.is_alive():
+            observer.stop()
+            observer.join()
+            logging.info("Watching stopped.")
+        watcher_thread.join()
 
 
 def main():
