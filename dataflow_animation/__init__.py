@@ -11,9 +11,10 @@ for rapid prototyping of data flow diagrams and animations.
 """
 
 from abc import ABC, abstractmethod
-from typing import Dict
-import logging
 
+from pygame import Surface
+
+from dataflow_animation.core.engine import AnimationManager
 from dataflow_animation.objects import BaseObject, Entity, Information
 
 
@@ -21,46 +22,32 @@ class Dataflow(ABC):
     """
     The Dataflow abstract class defines the structure of a data flow animation
     script. This class must be inherited by a subclass that implements the
-    __init__() and play() methods. The __init__() method is used to define the
-    entities and resources required for the animation, while the play() method
-    is used to render the animation to the screen. By following this structure,
-    users can create custom data flow animations that can be easily integrated
-    into their projects.
+    __init__() and setup() methods. The __init__() method is used to define the
+    entities and resources required for the animation, while the setup() method
+    is used to set up the animation script to be played to the window. By
+    following this structure, users can create custom data flow animations
+    that can be easily integrated into their projects.
     """
 
-    @abstractmethod
     def __init__(self):
-        """Setup the entities and resources for the animation."""
-        self.entities: Dict[str, Entity] = {}
-        self.informations: Dict[str, Information] = {}
+        self.engine = AnimationManager()
 
     @abstractmethod
-    def play(self, surface):
-        """Play the animation script to the window."""
+    def setup(self):
+        """Setup the animation script to be played to the window."""
+
+    @property
+    def is_ready(self):
+        return self.engine.is_ready
+
+    def set_surface(self, surface: Surface):
+        self.engine.surface = surface
 
     def find_entity(self, name: str) -> Entity:
-        """Find an entity by name."""
-        entity = self.entities.get(name)
-        if not entity:
-            raise ValueError(f"Entity not found: {name}")
-        return entity
+        return self.engine.find_entity(name)
 
     def find_information(self, name: str) -> Information:
-        """Find an information by name."""
-        information = self.informations.get(name)
-        if not information:
-            raise ValueError(f"Information not found: {name}")
-        return information
+        return self.engine.find_information(name)
 
     def register(self, instance: BaseObject):
-        """Register an object with the animation."""
-        if isinstance(instance, Entity):
-            self.entities[instance.name] = instance
-        elif isinstance(instance, Information):
-            self.informations[instance.name] = instance
-
-        logging.info(
-            "Registered: %s %s",
-            instance.__class__.__name__,
-            instance.name,
-        )
+        self.engine.register(instance)
