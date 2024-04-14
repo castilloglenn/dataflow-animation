@@ -53,9 +53,9 @@ make setup
 
 To run an example and see the library in action, use the following command:
 ```
-make run_example
+make example
 ```
 
-This will open a PyGame window displaying the animation specified in `examples/simple.py`. You can modify this file and save it to see changes in real-time due to the live reloading feature provided by the library.
+This will open a PyGame window displaying the animation specified in `examples/basic.py`. You can modify this file or just save it to see changes in real-time due to the live reloading feature provided by the library.
 
 
