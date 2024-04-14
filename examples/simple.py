@@ -7,7 +7,7 @@ animations to make it easier to use.
 
 import pygame
 
-from dataflow import Dataflow
+from dataflow_animation import Dataflow
 
 
 class Animation(Dataflow):

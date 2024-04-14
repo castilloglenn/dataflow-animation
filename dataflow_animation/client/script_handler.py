@@ -4,7 +4,7 @@ import importlib.util
 
 from watchdog.events import FileSystemEventHandler
 
-from dataflow import Dataflow
+from dataflow_animation import Dataflow
 
 
 class ScriptHandler(FileSystemEventHandler):

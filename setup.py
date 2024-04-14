@@ -5,14 +5,14 @@ with open("README.md", "r", encoding="utf-8") as f:
     DESCRIPTION = f.read()
 
 setup(
-    name="dataflow",
+    name="dataflow-animation",
     version="0.1.0",
     description="Python library that draws data flow animations.",
     long_description=DESCRIPTION,
     long_description_content_type="text/markdown",
     author="Allen Glenn E. Castillo",
     author_email="allenglenn.castillo@gmail.com",
-    url="https://github.com/castilloglenn/dataflow",
+    url="https://github.com/castilloglenn/dataflow-animation",
     packages=find_packages(),
     install_requires=["pygame", "watchdog"],
     entry_points={

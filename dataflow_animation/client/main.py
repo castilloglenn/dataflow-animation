@@ -6,8 +6,8 @@ import threading
 
 from watchdog.observers import Observer
 
-from dataflow.core.renderer import PygameRenderer
-from dataflow.client.script_handler import ScriptHandler
+from dataflow_animation.core.renderer import PygameRenderer
+from dataflow_animation.client.script_handler import ScriptHandler
 
 
 def observe(path, renderer):

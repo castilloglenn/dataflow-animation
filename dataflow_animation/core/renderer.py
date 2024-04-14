@@ -2,7 +2,7 @@ from typing import Optional
 
 import pygame
 
-from dataflow import Dataflow
+from dataflow_animation import Dataflow
 
 
 class PygameRenderer:
@@ -37,6 +37,8 @@ class PygameRenderer:
 
                 pygame.display.flip()
                 self.clock.tick(60)
+        except pygame.error:
+            pass
         except KeyboardInterrupt:
             pass
         finally:
