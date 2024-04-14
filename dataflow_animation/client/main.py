@@ -49,7 +49,7 @@ def main():
     logging.basicConfig(
         level=logging.INFO,
         format="[%(asctime)s] %(message)s",
-        datefmt="%Y/%m/%d %H:%M:%S",
+        datefmt="%H:%M:%S",
     )
 
     if len(sys.argv) != 2:
