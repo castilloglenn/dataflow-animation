@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import Optional
 import logging
 
@@ -6,7 +7,7 @@ from pygame import Surface
 import pygame
 
 from dataflow_animation.constants import CONFIG
-from dataflow_animation import Dataflow
+from dataflow_animation import Dataflow, __version__
 
 
 class PygameRenderer:
@@ -30,6 +31,10 @@ class PygameRenderer:
     def init(self):
         os.environ["SDL_VIDEO_WINDOW_POS"] = CONFIG.sdl_video_window_pos
         pygame.init()
+        python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+        pygame.display.set_caption(
+            f"Dataflow Animation {__version__} | Python {python_version}"
+        )
 
         self.screen = pygame.display.set_mode((CONFIG.width, CONFIG.height))
         self.clock = pygame.time.Clock()
