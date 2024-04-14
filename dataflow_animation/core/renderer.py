@@ -5,11 +5,8 @@ import logging
 from pygame import Surface
 import pygame
 
-from dataflow_animation.settings.config import get_config
+from dataflow_animation.constants import CONFIG
 from dataflow_animation import Dataflow
-
-
-CONFIG = get_config()
 
 
 class PygameRenderer:

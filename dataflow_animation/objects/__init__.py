@@ -4,13 +4,12 @@ from pygame import Surface
 from pygame.sprite import Sprite
 from pygame.font import Font
 
-from dataflow_animation.settings.config import get_config
-
-CONFIG = get_config()
+from dataflow_animation.constants import CONFIG
+from dataflow_animation.types import Dataflow
 
 
 class BaseObject(Sprite):
-    def __init__(self, collection, name: str):
+    def __init__(self, collection: Dataflow, name: str):
         super().__init__()
         self.collection = collection
         self.name = name
@@ -51,7 +50,7 @@ class BaseObject(Sprite):
 
 
 class Entity(BaseObject):
-    def __init__(self, collection, *, name: str, level: int):
+    def __init__(self, collection: Dataflow, *, name: str, level: int):
         super().__init__(collection, name)
         self.level = level
 
@@ -59,7 +58,7 @@ class Entity(BaseObject):
 
 
 class Information(BaseObject):
-    def __init__(self, collection, *, name: str, starts_at: str):
+    def __init__(self, collection: Dataflow, *, name: str, starts_at: str):
         super().__init__(collection, name)
         self.starts_at = collection.find_entity(starts_at)
 

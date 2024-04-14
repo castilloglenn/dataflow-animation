@@ -1,6 +1,8 @@
-from typing import Optional, Tuple
+from typing import Optional
 
 from pydantic import BaseModel
+
+from dataflow_animation.types import Color
 
 
 # pylint: disable=too-few-public-methods
@@ -20,8 +22,8 @@ class Config(BaseModel):
     font_size: int = 20
 
     # Colors
-    font_color: Tuple[int, int, int] = (255, 255, 255)
-    background_color: Tuple[int, int, int] = (0, 0, 0)
+    font_color: Color = (255, 255, 255)
+    background_color: Color = (0, 0, 0)
 
     class Config:
         env_file = ".env"
