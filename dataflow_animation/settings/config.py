@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
-from typing import Tuple, Optional
+from typing import Optional
 import logging
+
+from dataflow_animation.types import Color, ConfigOptions
 
 
 # pylint: disable=R0902
@@ -23,20 +25,22 @@ class Config:
     font_size: int = 20
 
     # Colors
-    font_color: Tuple[int, int, int] = (255, 255, 255)
-    background_color: Tuple[int, int, int] = (0, 0, 0)
+    font_color: Color = (255, 255, 255)
+    background_color: Color = (0, 0, 0)
 
     def __post_init__(self):
-        # Initialize `sdl_video_window_pos` based on `x` and `y`
         self.sdl_video_window_pos = f"{self.x},{self.y}"
 
-    def update(self, **kwargs):
+    def update(self, **kwargs: ConfigOptions):
         for key, value in kwargs.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
-                if key in ("x", "y"):
-                    self.sdl_video_window_pos = f"{self.x},{self.y}"
-        logging.info("Configuration updated: %s", kwargs)
+            if not hasattr(self, key):
+                raise ValueError(f"Invalid configuration option: {key}")
+
+            setattr(self, key, value)
+            if key in ("x", "y"):
+                self.sdl_video_window_pos = f"{self.x},{self.y}"
+
+            logging.info("Configuration updated: %s -> %s", key, value)
 
 
 _singleton_instance: Optional[Config] = None
