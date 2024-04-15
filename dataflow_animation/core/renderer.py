@@ -71,7 +71,7 @@ class PygameRenderer:
                 raise ValueError(
                     "Animation is not ready. Please register atleast one:"
                     + " Entity, Information, and AnimationStep"
-                    + "(animate function)."
+                    + "(via animate function)."
                 )
 
         except pygame.error as e:
