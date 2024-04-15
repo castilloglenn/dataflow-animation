@@ -7,7 +7,11 @@ from dataflow_animation.constants import CONFIG
 class Animation(Dataflow):
     def setup(self):
         # Optional: Override configuration setting
-        CONFIG.update(width=1000)
+        CONFIG.update(
+            width=400,
+            height=400,
+            background_color=(255, 255, 255),
+        )
 
         # Step 1: Create entities and informations
         Entity(self, name="Frontend", level=1)
