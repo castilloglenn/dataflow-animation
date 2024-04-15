@@ -14,16 +14,18 @@ class Animation(Dataflow):
         )
 
         # Step 1: Create entities and informations
-        Entity(self, name="Frontend", level=1)
+        Entity(self, name="Web App", level=1)
+        Entity(self, name="Mobile App", level=1)
         Entity(self, name="Backend", level=2)
+
         Information(
             self,
-            name="Data",
-            starts_at="Frontend",
+            name="Request",
+            starts_at="Web App",
         )
 
         # Step 2: Animate the data flow
-        animate(self, info="Data", to="Backend")
+        animate(self, info="Request", to="Backend")
 
         # Final step: Save the file and run the animation
         # Updating the file will apply the changes realtime in the window
