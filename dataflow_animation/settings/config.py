@@ -3,6 +3,7 @@ from typing import Optional
 import logging
 
 from dataflow_animation.types import Color, ConfigOptions
+from dataflow_animation.enums import Direction
 
 
 @dataclass
@@ -22,6 +23,8 @@ class Config:
     fps: int = 60
     font_name: str = "Arial"
     font_size: int = 20
+    data_direction: Direction = Direction.RIGHT
+    padding: int = 50
 
     # Colors
     font_color: Color = (255, 255, 255)
