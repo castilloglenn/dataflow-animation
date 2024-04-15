@@ -1,6 +1,3 @@
-from typing import List
-
-from dataflow_animation.objects import Entity
 from dataflow_animation.constants import CONFIG, WINDOW
 from dataflow_animation.types import Coordinates
 
@@ -25,7 +22,3 @@ def get_right_direction_position(
     y_position = padding + (cross_axis_index + 1) * cross_axis_spacing
 
     return (x_position, y_position)
-
-
-def set_starting_points(entity_tree: List[List[Entity]]):
-    pass
