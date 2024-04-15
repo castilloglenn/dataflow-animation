@@ -67,6 +67,12 @@ class PygameRenderer:
         try:
             self.animation.engine.set_surface(self.screen)
             self.animation.setup()
+            if not self.animation.engine.is_ready:
+                raise ValueError(
+                    "Animation is not ready. Please register atleast one:"
+                    + " Entity, Information, and AnimationStep"
+                    + "(animate function)."
+                )
 
         except pygame.error as e:
             logging.error("Pygame error: %s", e)
