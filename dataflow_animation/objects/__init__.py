@@ -4,7 +4,7 @@ from pygame import Rect, Surface
 from pygame.sprite import Sprite
 from pygame.font import Font, get_init, init
 
-from dataflow_animation.constants import CONFIG
+from dataflow_animation.settings.config import get_config
 from dataflow_animation.types import Dataflow
 
 
@@ -26,8 +26,8 @@ class BaseObject(Sprite):
         if not get_init():
             init()
 
-        font = Font(CONFIG.font_name, CONFIG.font_size)
-        self.image = font.render(self.name, True, CONFIG.font_color)
+        font = Font(get_config().font_name, get_config().font_size)
+        self.image = font.render(self.name, True, get_config().font_color)
         self.rect = self.image.get_rect()
 
     @property
@@ -56,8 +56,8 @@ class Entity(BaseObject):
 
         animation.engine.register(self)
 
-    def __repr__(self):
-        return f"<Entity name={self.name} level={self.level}>"
+    def __str__(self):
+        return f"Entity: '{self.name}' {self.position} level {self.level}"
 
 
 class Information(BaseObject):
@@ -67,5 +67,9 @@ class Information(BaseObject):
 
         animation.engine.register(self)
 
-    def __repr__(self):
-        return f"<Information name={self.name} starts={self.starts_at.name}>"
+    def __str__(self):
+        return (
+            f"Information: '{self.name}' "
+            f"{self.position} "
+            f"Entity({self.starts_at.name}) "
+        )

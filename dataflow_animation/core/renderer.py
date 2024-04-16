@@ -6,7 +6,7 @@ import logging
 from pygame import Surface
 import pygame
 
-from dataflow_animation.constants import CONFIG
+from dataflow_animation.settings.config import get_config
 from dataflow_animation import Dataflow, __version__
 
 
@@ -25,18 +25,27 @@ class PygameRenderer:
 
     def set_animation(self, animation):
         self.animation = animation
-        if self.animation:
-            self.build_animation_sequence()
+        if not animation:
+            return None
+        self.build_animation_sequence()
+
+        if not self.screen:
+            return None
+        self.animation.engine.set_surface(self.screen)
 
     def init(self):
-        os.environ["SDL_VIDEO_WINDOW_POS"] = CONFIG.sdl_video_window_pos
+        os.environ["SDL_VIDEO_WINDOW_POS"] = get_config().sdl_video_window_pos
         pygame.init()
         python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
         pygame.display.set_caption(
             f"Dataflow Animation {__version__} | Python {python_version}"
         )
 
-        self.screen = pygame.display.set_mode((CONFIG.width, CONFIG.height))
+        self.screen = pygame.display.set_mode(
+            (get_config().width, get_config().height),
+        )
+        self.animation.engine.set_surface(self.screen)
+
         self.clock = pygame.time.Clock()
 
     def run(self):
@@ -55,18 +64,18 @@ class PygameRenderer:
                 self.running = False
 
     def render(self):
-        self.screen.fill(CONFIG.background_color)
+        self.screen.fill(get_config().background_color)
+        if self.animation:
+            self.animation.engine.render()
 
         pygame.display.update()
-        self.clock.tick(CONFIG.fps)
+        self.clock.tick(get_config().fps)
 
     def build_animation_sequence(self):
         if self.animation is None:
             return
 
         try:
-            self.animation.engine.set_surface(self.screen)
-
             self.animation.setup()
             if not self.animation.engine.is_ready:
                 raise ValueError(

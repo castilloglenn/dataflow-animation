@@ -54,3 +54,8 @@ def get_config() -> Config:
     if _singleton_instance is None:
         _singleton_instance = Config()
     return _singleton_instance
+
+
+def set_config(**kwargs: ConfigOptions):
+    get_config().update(**kwargs)
+    return get_config()
