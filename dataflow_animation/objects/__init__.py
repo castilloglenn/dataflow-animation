@@ -21,7 +21,7 @@ class BaseObject(Sprite):
 
     def init(self):
         if not self.visible or not self.name:
-            return None
+            return
 
         if not get_init():
             init()
@@ -44,7 +44,7 @@ class BaseObject(Sprite):
     # pylint: disable=W0221
     def update(self, surface: Surface):
         if not (surface and self.image):
-            return None
+            return
 
         surface.blit(self.image, self.rect)
 

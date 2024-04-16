@@ -68,7 +68,7 @@ class PygameRenderer:
 
     def build_animation_sequence(self):
         if self.animation is None:
-            return None
+            return
 
         try:
             reset_config()

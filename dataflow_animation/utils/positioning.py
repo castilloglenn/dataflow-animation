@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from dataflow_animation.objects import Entity, Information
 from dataflow_animation.settings.config import get_config
@@ -48,7 +48,7 @@ def get_direction_position(
     main_axis_total: int,
     cross_axis_index: int,
     cross_axis_total: int,
-) -> Coordinates:
+) -> Optional[Coordinates]:
     if get_config().data_direction == Direction.RIGHT:
         return get_right_direction_position(
             main_axis_index,
