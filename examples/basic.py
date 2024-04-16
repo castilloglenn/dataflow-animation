@@ -1,16 +1,18 @@
 from dataflow_animation import Dataflow
 from dataflow_animation.animations import animate
 from dataflow_animation.objects import Entity, Information
-from dataflow_animation.settings.config import set_config
+
+# Uncomment this line to override the default configuration
+# from dataflow_animation.settings.config import set_config
 
 
 class Animation(Dataflow):
     def setup(self):
         # Optional: Override configuration setting
-        set_config(
-            background_color=(255, 255, 255),
-            font_color=(0, 0, 0),
-        )
+        # set_config(
+        #     background_color=(255, 255, 255),
+        #     font_color=(0, 0, 0),
+        # )
 
         # Step 1: Create entities and informations
         Entity(self, name="Web App", level=1)
