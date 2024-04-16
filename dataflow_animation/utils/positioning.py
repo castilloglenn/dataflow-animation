@@ -56,6 +56,7 @@ def get_direction_position(
             cross_axis_index,
             cross_axis_total,
         )
+    return None
 
 
 def set_starting_points(
