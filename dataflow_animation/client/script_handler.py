@@ -47,6 +47,7 @@ class ScriptHandler(FileSystemEventHandler):
                     )
                     self.renderer.set_animation(None)
                     return
+                os.system("cls" if os.name == "nt" else "clear")
                 logging.info("File change detected. Applying animation...")
                 self.renderer.set_animation(module.Animation())
             else:
