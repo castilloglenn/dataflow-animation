@@ -2,6 +2,7 @@ import os
 import sys
 from typing import Optional
 import logging
+import traceback
 
 from pygame import Surface
 import pygame
@@ -90,11 +91,10 @@ class PygameRenderer:
             logging.error("Pygame error: %s", e)
 
         # pylint: disable=W0718
-        except Exception as e:
+        except Exception:
             logging.error(
-                "Error building the animations:\n%s: %s",
-                type(e).__name__,
-                e,
+                "Error building the animations:\n%s",
+                traceback.format_exc(),
             )
             self.set_animation(None)
 

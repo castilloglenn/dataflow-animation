@@ -2,6 +2,7 @@ from importlib.machinery import ModuleSpec
 import os
 import logging
 import importlib.util
+import traceback
 from types import ModuleType
 
 from watchdog.events import FileSystemEventHandler, FileModifiedEvent
@@ -55,6 +56,7 @@ class ScriptHandler(FileSystemEventHandler):
                 self.renderer.set_animation(None)
 
         # pylint: disable=W0718
-        except Exception as e:
-            logging.error("Error loading script:\n%s: %s", type(e).__name__, e)
+        except Exception:
+            logging.error("Error loading script:\n%s", traceback.format_exc())
+
             self.renderer.set_animation(None)
