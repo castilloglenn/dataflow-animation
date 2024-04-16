@@ -1,7 +1,8 @@
 from typing import Dict, List
 
-from dataflow_animation.objects import Entity
-from dataflow_animation.constants import CONFIG, WINDOW
+from dataflow_animation.objects import Entity, Information
+from dataflow_animation.settings.config import get_config
+from dataflow_animation.constants import WINDOW
 from dataflow_animation.types import Coordinates
 from dataflow_animation.enums import Direction
 
@@ -26,7 +27,7 @@ def get_right_direction_position(
     cross_axis_index: int,
     cross_axis_total: int,
 ) -> Coordinates:
-    padding = CONFIG.padding
+    padding = get_config().padding
 
     main_axis_length = WINDOW.width - 2 * padding
     cross_axis_length = WINDOW.height - 2 * padding
@@ -48,7 +49,7 @@ def get_direction_position(
     cross_axis_index: int,
     cross_axis_total: int,
 ) -> Coordinates:
-    if CONFIG.data_direction == Direction.RIGHT:
+    if get_config().data_direction == Direction.RIGHT:
         return get_right_direction_position(
             main_axis_index,
             main_axis_total,
@@ -57,12 +58,19 @@ def get_direction_position(
         )
 
 
-def set_starting_points(entity_tree: List[List[Entity]]):
-    for main_axis_index, entities in enumerate(entity_tree):
-        for cross_axis_index, entity in enumerate(entities):
+def set_starting_points(
+    entity_tree: List[List[Entity]],
+    informations: Dict[str, Information],
+):
+    for main_axis_index, entities_ in enumerate(entity_tree):
+        for cross_axis_index, entity in enumerate(entities_):
             entity.position = get_direction_position(
                 main_axis_index,
                 len(entity_tree),
                 cross_axis_index,
-                len(entities),
+                len(entities_),
             )
+
+    for information in informations.values():
+        position_offset = information.starts_at.position
+        information.position = (position_offset[0], position_offset[1] + 30)

@@ -2,6 +2,7 @@ from typing import Dict, List
 import logging
 
 from pygame import Surface
+from pygame.sprite import Group
 
 from dataflow_animation.animations import AnimationStep
 from dataflow_animation.objects import BaseObject, Entity, Information
@@ -21,6 +22,7 @@ class AnimationManager:
 
         # Logic
         self.entity_tree: List[List[Entity]] = []
+        self.group: Group = Group()
 
     @property
     def is_ready(self):
@@ -66,12 +68,15 @@ class AnimationManager:
 
     def build_entity_tree(self):
         self.entity_tree = transform_entities_to_tree(self.entities)
-        set_starting_points(self.entity_tree)
+        set_starting_points(self.entity_tree, self.informations)
 
-        for entities in self.entity_tree:
-            for entity in entities:
-                logging.info(
-                    "Entity: %s, Position: %s",
-                    entity.name,
-                    entity.position,
-                )
+        for entity in self.entities.values():
+            logging.info(entity)
+            self.group.add(entity)
+
+        for information in self.informations.values():
+            logging.info(information)
+            self.group.add(information)
+
+    def render(self):
+        self.group.update(self.surface)
