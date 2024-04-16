@@ -72,5 +72,11 @@ def set_starting_points(
             )
 
     for information in informations.values():
+        entity_height = information.starts_at.rect.height
+        vertical_text_spacing = get_config().vertical_text_spacing
+        top_padding = entity_height + vertical_text_spacing
         position_offset = information.starts_at.position
-        information.position = (position_offset[0], position_offset[1] + 30)
+        information.position = (
+            position_offset[0],
+            position_offset[1] + top_padding,
+        )

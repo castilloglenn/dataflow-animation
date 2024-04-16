@@ -24,3 +24,4 @@ class ConfigOptions(TypedDict, total=False):
     background_color: Color
     data_direction: Direction
     padding: int
+    vertical_text_spacing: int
