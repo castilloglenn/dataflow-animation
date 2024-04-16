@@ -21,7 +21,7 @@ class Config:
 
     # Rendering
     fps: int = 60
-    font_name: str = "Arial"
+    font_name: Optional[str] = None
     font_size: int = 20
     data_direction: Direction = Direction.RIGHT
     padding: int = 50

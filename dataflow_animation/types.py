@@ -1,4 +1,4 @@
-from typing import TypedDict, Any, Tuple
+from typing import Optional, TypedDict, Any, Tuple
 
 
 from dataflow_animation.enums import Direction
@@ -18,7 +18,7 @@ class ConfigOptions(TypedDict, total=False):
     y: int
     sdl_video_window_pos: str
     fps: int
-    font_name: str
+    font_name: Optional[str]
     font_size: int
     font_color: Color
     background_color: Color
