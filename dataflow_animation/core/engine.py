@@ -5,15 +5,22 @@ from pygame import Surface
 
 from dataflow_animation.animations import AnimationStep
 from dataflow_animation.objects import BaseObject, Entity, Information
+from dataflow_animation.utils.positioning import (
+    transform_entities_to_tree,
+    set_starting_points,
+)
 
 
 class AnimationManager:
     def __init__(self):
+        # Data
         self.entities: Dict[str, Entity] = {}
         self.informations: Dict[str, Information] = {}
         self.animation_steps: List[AnimationStep] = []
-
         self.surface: Surface = None
+
+        # Logic
+        self.entity_tree: List[List[Entity]] = []
 
     @property
     def is_ready(self):
@@ -53,3 +60,18 @@ class AnimationManager:
             instance.__class__.__name__,
             instance.name,
         )
+
+    def setup(self):
+        self.build_entity_tree()
+
+    def build_entity_tree(self):
+        self.entity_tree = transform_entities_to_tree(self.entities)
+        set_starting_points(self.entity_tree)
+
+        for entities in self.entity_tree:
+            for entity in entities:
+                logging.info(
+                    "Entity: %s, Position: %s",
+                    entity.name,
+                    entity.position,
+                )
