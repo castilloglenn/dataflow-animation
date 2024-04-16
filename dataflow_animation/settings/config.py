@@ -9,8 +9,8 @@ from dataflow_animation.enums import Direction
 @dataclass
 class Config:
     # Screen dimensions
-    width: int = 600
-    height: int = 800
+    width: int = 500
+    height: int = 400
 
     # Window position
     x: int = 0
@@ -24,7 +24,10 @@ class Config:
     font_name: Optional[str] = None
     font_size: int = 20
     data_direction: Direction = Direction.RIGHT
-    padding: int = 50
+
+    # Spacing
+    padding: int = 20
+    vertical_text_spacing: int = 10
 
     # Colors
     font_color: Color = (255, 255, 255)
@@ -59,3 +62,9 @@ def get_config() -> Config:
 def set_config(**kwargs: ConfigOptions):
     get_config().update(**kwargs)
     return get_config()
+
+
+def reset_config():
+    # pylint: disable=W0603
+    global _singleton_instance
+    _singleton_instance = None

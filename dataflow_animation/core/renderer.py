@@ -7,7 +7,7 @@ import traceback
 from pygame import Surface
 import pygame
 
-from dataflow_animation.settings.config import get_config
+from dataflow_animation.settings.config import get_config, reset_config
 from dataflow_animation import Dataflow, __version__
 
 
@@ -26,7 +26,7 @@ class PygameRenderer:
 
     def set_animation(self, animation):
         self.animation = animation
-        if not animation:
+        if self.animation is None:
             return None
         self.build_animation_sequence()
 
@@ -77,6 +77,7 @@ class PygameRenderer:
             return
 
         try:
+            reset_config()
             self.animation.setup()
             if not self.animation.engine.is_ready:
                 raise ValueError(
