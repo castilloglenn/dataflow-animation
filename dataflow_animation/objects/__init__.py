@@ -57,7 +57,7 @@ class Entity(BaseObject):
         animation.engine.register(self)
 
     def __repr__(self):
-        return f"<Entity {self.name} level: {self.level}>"
+        return f"<Entity name={self.name} level={self.level}>"
 
 
 class Information(BaseObject):
@@ -68,4 +68,4 @@ class Information(BaseObject):
         animation.engine.register(self)
 
     def __repr__(self):
-        return f"<Information {self.name} starts:{self.starts_at.name}>"
+        return f"<Information name={self.name} starts={self.starts_at.name}>"
