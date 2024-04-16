@@ -26,13 +26,7 @@ class PygameRenderer:
 
     def set_animation(self, animation):
         self.animation = animation
-        if self.animation is None:
-            return None
         self.build_animation_sequence()
-
-        if not self.screen:
-            return None
-        self.animation.engine.set_surface(self.screen)
 
     def init(self):
         os.environ["SDL_VIDEO_WINDOW_POS"] = get_config().sdl_video_window_pos
@@ -74,10 +68,13 @@ class PygameRenderer:
 
     def build_animation_sequence(self):
         if self.animation is None:
-            return
+            return None
 
         try:
             reset_config()
+            if self.screen:
+                self.animation.engine.set_surface(self.screen)
+
             self.animation.setup()
             if not self.animation.engine.is_ready:
                 raise ValueError(

@@ -43,8 +43,8 @@ class BaseObject(Sprite):
 
     # pylint: disable=W0221
     def update(self, surface: Surface):
-        if not (self.image and self.rect):
-            return
+        if not (surface and self.image):
+            return None
 
         surface.blit(self.image, self.rect)
 
