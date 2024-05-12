@@ -2,19 +2,19 @@ from dataclasses import dataclass, field
 from typing import Optional
 import logging
 
-from dataflow_animation.types import Color, ConfigOptions
+from dataflow_animation.types import Color, ConfigOptions, Milliseconds, Pixels
 from dataflow_animation.enums import Direction
 
 
 @dataclass
 class Config:
     # Screen dimensions
-    width: int = 500
-    height: int = 400
+    width: Pixels = 350
+    height: Pixels = 400
 
     # Window position
-    x: int = 0
-    y: int = 0
+    x: Pixels = 0
+    y: Pixels = 0
 
     # Derived field: SDL video window position
     sdl_video_window_pos: str = field(init=False)
@@ -25,9 +25,12 @@ class Config:
     font_size: int = 20
     data_direction: Direction = Direction.RIGHT
 
+    # Animation Timing
+    stay_duration: Milliseconds = 1000
+
     # Spacing
-    padding: int = 20
-    vertical_text_spacing: int = 10
+    padding: Pixels = 10
+    vertical_text_spacing: Pixels = 10
 
     # Colors
     font_color: Color = (255, 255, 255)
