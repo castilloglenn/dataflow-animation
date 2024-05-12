@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from dataflow_animation.objects import Entity, Information
 from dataflow_animation.settings.config import get_config
@@ -48,7 +48,7 @@ def get_direction_position(
     main_axis_total: int,
     cross_axis_index: int,
     cross_axis_total: int,
-) -> Optional[Coordinates]:
+) -> Coordinates:
     if get_config().data_direction == Direction.RIGHT:
         return get_right_direction_position(
             main_axis_index,
@@ -56,7 +56,8 @@ def get_direction_position(
             cross_axis_index,
             cross_axis_total,
         )
-    return None
+
+    raise ValueError(f"Unknown data_direction: {get_config().data_direction}")
 
 
 def set_starting_points(
