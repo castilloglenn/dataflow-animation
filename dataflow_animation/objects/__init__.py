@@ -4,6 +4,7 @@ from pygame import Rect, Surface
 from pygame.sprite import Sprite
 from pygame.font import Font, get_init, init
 
+from dataflow_animation.enums import MovementStatus
 from dataflow_animation.settings.config import get_config
 from dataflow_animation.types import Dataflow
 
@@ -64,6 +65,9 @@ class Information(BaseObject):
     def __init__(self, animation: Dataflow, *, name: str, starts_at: str):
         super().__init__(name)
         self.starts_at = animation.engine.find_entity(starts_at)
+
+        # Logic
+        self.movement_status: MovementStatus = MovementStatus.INITIAL
 
         animation.engine.register(self)
 
