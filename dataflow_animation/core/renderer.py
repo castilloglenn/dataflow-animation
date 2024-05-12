@@ -9,6 +9,7 @@ import pygame
 
 from dataflow_animation.settings.config import get_config, reset_config
 from dataflow_animation import Dataflow, __version__
+from dataflow_animation.types import Milliseconds
 
 
 class PygameRenderer:
@@ -17,6 +18,9 @@ class PygameRenderer:
         self.screen: Surface = None
         self.clock: pygame.time.Clock = None
         self.running = True
+
+        # Logic
+        self.tick_duration: Milliseconds = 0
 
     @property
     def is_ready(self):
@@ -61,10 +65,10 @@ class PygameRenderer:
     def render(self):
         self.screen.fill(get_config().background_color)
         if self.animation:
-            self.animation.engine.render()
+            self.animation.engine.render(self.tick_duration)
 
         pygame.display.update()
-        self.clock.tick(get_config().fps)
+        self.tick_duration = self.clock.tick(get_config().fps)
 
     def build_animation_sequence(self):
         if self.animation is None:
