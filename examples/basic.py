@@ -33,7 +33,7 @@ class Animation(Dataflow):
         for i in range(3):
             Entity(self, name=f"Client {i+1}", level=1)
 
-        Information(self, name="Request", starts_at="Client 3")
+        Information(self, name="Request", starts_at="Client 1")
 
         # Step 2: Animate the data flow
         # animate(self, info="Request", to="Backend")
