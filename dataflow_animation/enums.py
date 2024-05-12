@@ -10,3 +10,10 @@ class Direction(Enum):
     DOWN = 1
     LEFT = 2
     RIGHT = 3
+
+
+class MovementStatus(Enum):
+    INITIAL = 0
+    MOVING = 1
+    STOPPED = 2
+    FINISHED = 3
