@@ -9,19 +9,29 @@ Dataflow = Any
 
 Color = Tuple[int, int, int]
 Coordinates = Tuple[int, int]
+Milliseconds = int
+Pixels = int
 
 
 class ConfigOptions(TypedDict, total=False):
-    width: int
-    height: int
-    x: int
-    y: int
+    # Screen dimensions
+    width: Pixels
+    height: Pixels
+    # Window position
+    x: Pixels
+    y: Pixels
+    # Derived field: SDL video window position
     sdl_video_window_pos: str
+    # Rendering
     fps: int
     font_name: Optional[str]
     font_size: int
+    data_direction: Direction
+    # Animation Timing
+    stay_duration: Milliseconds
+    # Spacing
+    padding: Pixels
+    vertical_text_spacing: Pixels
+    # Colors
     font_color: Color
     background_color: Color
-    data_direction: Direction
-    padding: int
-    vertical_text_spacing: int
