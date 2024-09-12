@@ -1,3 +1,5 @@
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fcastilloglenn%2Fdataflow-animation&count_bg=%23328DF1&title_bg=%23555555&icon=myspace.svg&icon_color=%23E7E7E7&title=Visits&edge_flat=false)](https://hits.seeyoufarm.com)
+
 # Dataflow Animation
 **dataflow-animation** is an innovative Python library designed to simplify the visualization of data flows through **real-time animations**. Utilizing **Pygame** for rendering and **Watchdog** for live updates, Dataflow makes it effortless to develop, visualize, and refine complex data flow animations dynamically. This library is particularly useful for developers and analysts who need to create and present **data-driven animations and diagrams** that are both informative and visually engaging. With Dataflow, users can write Python code to define animations and see changes reflected **instantaneously** on the screen, making it an ideal tool for **rapid prototyping of data flow diagrams and animations**.
 
